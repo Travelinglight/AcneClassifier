@@ -59,7 +59,7 @@ if __name__ == '__main__':
     labels_t = cPickle.load(load_data_t)
     load_data_t.close()
 
-    import pdb; pdb.set_trace()
+    # import pdb; pdb.set_trace()
     X_test, y_test = data_t, labels_t
     X_test = X_test.astype('float32')
     X_test /= 255.
@@ -68,12 +68,12 @@ if __name__ == '__main__':
     Y_test = np_utils.to_categorical(y_test, nb_classes)
 
     # import pdb; pdb.set_trace()
-    # model = def_model()
+    model = def_model()
 
-    # model.load_weights('my_model_weights.h5')
+    model.load_weights('my_model_weights.h5')
 
-    # classes = model.predict_classes(X_test, batch_size = batch_size)
-    predict(X_test)
+    classes = model.predict_classes(X_test, batch_size = batch_size)
+    # predict(X_test)
         
     pos = 0
     neg = 0

@@ -36,10 +36,11 @@ def getDataLabels(directory, label):
     labels = numpy.empty(num)
     idx = 0
     for i in directory:
+        import pdb; pdb.set_trace()
         img = cv2.imread(i, 0)
-        print i
         resize = cv2.resize(img, (53, 53))
         tmp = numpy.array(resize)
+        print tmp
         data[idx, 0, :, :] = tmp
         labels[idx] = label[idx]
         idx += 1
@@ -52,8 +53,6 @@ def write2File(data, labels, name):
     writeFile.close()
 
 def main():
-    import pdb; pdb.set_trace()
-    
     trainDir, trainLabel, testDir, testLabel= getDirLabel()
     trainData, trainLabels = getDataLabels(trainDir, trainLabel)
     print "train data read"
