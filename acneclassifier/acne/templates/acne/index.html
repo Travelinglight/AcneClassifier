@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  {% load staticfiles %}
+  <link type="text/css" rel="stylesheet" href="{% static 'materialize/bin/materialize.css' %}" media="screen,projection"/>
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  <script type="text/javascript" src="{% static 'javascript/jquery.js' %}"></script>
+  <script type="text/javascript" src="{% static 'materialize/bin/materialize.js' %}"></script>
+</head>
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">基于机器视觉的面部问题皮肤检测软件</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="#">上传图片</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <div class="valign-wrapper main-container">
+      <p id="instruction">使用说明：用鼠标拖动选中区域进行分类</p>
+      <div class="card">
+        <div class="card-image">
+          <img class="activator acne" src="{% static 'images/acne.jpg' %}">
+        </div>
+        <div class="card-content">
+          <p class="result">类型：白头</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
+
