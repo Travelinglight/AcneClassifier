@@ -87,3 +87,9 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+.bash_logout
+.bashrc
+.profile
+.cloud-locale-test.skip
+
