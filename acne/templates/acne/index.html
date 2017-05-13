@@ -7,30 +7,74 @@
   <link href="{% static 'css/style.css' %}" rel="stylesheet">
   <script type="text/javascript" src="{% static 'javascript/jquery.js' %}"></script>
   <script type="text/javascript" src="{% static 'materialize/bin/materialize.js' %}"></script>
+  <script type="text/javascript" src="{% static 'javascript/myjs.js' %}"></script>
+  <script type="text/javascript">
+    $(document).ready(function($) {
+      /* ------------------------------ images uploading -------------------------------- */
+      var profileImg = '';
+      var reader;
+
+      function handleFileSelect(evt) {
+        files = evt.target.files;
+
+        // limit the file number
+        if (files.length > 1) {
+          alert("only 1 profile image is allowed");
+          return;
+        }
+
+        // decide whether file list block should be displayed
+        if(!files[0].type.match('image.*')) {
+          alert("This is not an image file");
+          return;
+        }
+
+        for (var i = 0, f; f = files[i]; i++) {
+          if(!f.type.match('image.*')){
+            continue;
+          }
+          reader = new FileReader();
+          reader.onload = (function(theFile){
+            return function(e){
+              var acne_img = document.getElementById('acne_img');
+              acne_img.setAttribute('src', e.target.result);
+              acne_img.onload = function() {
+                  // profileImg = e.target.result;
+                $("#instruction").show();
+              }
+            }
+          })(f);
+          reader.readAsDataURL(f);
+        }
+      }
+      document.getElementById('upload_ipt').addEventListener('change', handleFileSelect, false);
+    });
+  </script>
 </head>
 <body>
   <nav>
     <div class="nav-wrapper">
       <a href="#" class="brand-logo">基于机器视觉的面部问题皮肤检测软件</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="#">上传图片</a></li>
+        <li><a id="upload_btn" href="#">上传图片</a></li>
       </ul>
     </div>
   </nav>
 
   <main>
-    <div class="valign-wrapper main-container">
-      <p id="instruction">使用说明：用鼠标拖动选中区域进行分类</p>
+    <div class="valign-wrapper">
       <div class="card">
         <div class="card-image">
-          <img class="activator acne" src="{% static 'images/acne.jpg' %}">
+          <img class="activator acne" id="acne_img" src="{% static 'images/init.jpg' %}">
         </div>
         <div class="card-content">
-          <p class="result">类型：白头</p>
+          <p class="instruction">使用说明：用鼠标拖动选中区域进行分类</p>
+          <p class="result">类型：</p>
         </div>
       </div>
     </div>
   </main>
+  <input id="upload_ipt" type="file" title="" hidden>
 </body>
 </html>
 

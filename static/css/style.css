@@ -7,14 +7,11 @@ div.nav-wrapper {
     margin: auto;
 }
 
-p#instruction {
-    display: none;
-}
-
 div.card {
     max-width: 600px;
     margin-top: 50px;
 }
+
 
 div.card-image {
     max-width: 600px;
@@ -30,4 +27,8 @@ img.acne {
     max-height: 600px;
     width: auto;
     height: auto;
+}
+
+input[type="file"] {
+    display: none;
 }
