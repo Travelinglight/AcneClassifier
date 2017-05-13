@@ -4,12 +4,22 @@
 <head>
   {% load staticfiles %}
   <link type="text/css" rel="stylesheet" href="{% static 'materialize/bin/materialize.css' %}" media="screen,projection"/>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/imgareaselect-default.css' %}" />
   <link href="{% static 'css/style.css' %}" rel="stylesheet">
   <script type="text/javascript" src="{% static 'javascript/jquery.js' %}"></script>
   <script type="text/javascript" src="{% static 'materialize/bin/materialize.js' %}"></script>
+  <script type="text/javascript" src="{% static 'javascript/jquery.imgareaselect.pack.js' %}"></script>
   <script type="text/javascript" src="{% static 'javascript/myjs.js' %}"></script>
   <script type="text/javascript">
     $(document).ready(function($) {
+      /* ------------------------------ images predict -------------------------------- */
+      function predict(img, selection) {
+        if (!selection.width || !selection.height)
+          return;
+        console.log(img);
+        console.log(selection);
+      }
+
       /* ------------------------------ images uploading -------------------------------- */
       var profileImg = '';
       var reader;
@@ -39,8 +49,13 @@
               var acne_img = document.getElementById('acne_img');
               acne_img.setAttribute('src', e.target.result);
               acne_img.onload = function() {
-                  // profileImg = e.target.result;
-                $("#instruction").show();
+                // profileImg = e.target.result;
+                $('img#acne_img').imgAreaSelect({
+                  handles: true,
+                  // minHeight: 53,
+                  // minWidth: 53,
+                  onSelectEnd: predict
+                });
               }
             }
           })(f);
@@ -75,6 +90,7 @@
     </div>
   </main>
   <input id="upload_ipt" type="file" title="" hidden>
+  
 </body>
 </html>
 
