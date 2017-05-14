@@ -22,7 +22,7 @@
           ratio = img.naturalWidth * 1.0 / 600;
         else
           ratio = img.naturalHeight * 1.0 / 600;
-console.log(ratio);
+
         selection.x1 = Math.round(selection.x1 * ratio);
         selection.x2 = Math.round(selection.x2 * ratio);
         selection.y1 = Math.round(selection.y1 * ratio);
@@ -46,9 +46,7 @@ console.log(ratio);
       function predict(img, selection) {
         if (!selection.width || !selection.height)
           return;
-        console.log(selection);
         selection = getRealSelection(img, selection);
-        console.log(selection);
         var canvas = document.createElement('canvas');
         var ctx = canvas.getContext("2d");
         canvas.height = 6000;
@@ -133,4 +131,3 @@ console.log(ratio);
   <input id="upload_ipt" type="file" title="" hidden>
 </body>
 </html>
-
