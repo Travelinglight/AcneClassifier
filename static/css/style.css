@@ -32,3 +32,8 @@ img.acne {
 input[type="file"] {
     display: none;
 }
+
+canvas#myCanvas {
+    height: 600px;
+    width: 600px;
+}
