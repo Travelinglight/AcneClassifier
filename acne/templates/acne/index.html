@@ -13,6 +13,25 @@
   <script type="text/javascript">
     $(document).ready(function($) {
 
+      function getRealSelection(img, selection) {
+
+        if (img.naturalWidth <= 600 && img.naturalHeight <= 600) {
+          return selection;
+        }
+        if (img.naturalWidth > img.naturalHeight)
+          ratio = img.naturalWidth * 1.0 / 600;
+        else
+          ratio = img.naturalHeight * 1.0 / 600;
+console.log(ratio);
+        selection.x1 = Math.round(selection.x1 * ratio);
+        selection.x2 = Math.round(selection.x2 * ratio);
+        selection.y1 = Math.round(selection.y1 * ratio);
+        selection.y2 = Math.round(selection.y2 * ratio);
+        selection.width = Math.round(selection.width * ratio);
+        selection.height = Math.round(selection.height * ratio);
+        return selection
+      }
+
       function toDataUrl(imgData, callback, outputFormat) {
         var canvas = document.createElement('canvas');
         var ctx = canvas.getContext("2d");
@@ -27,10 +46,13 @@
       function predict(img, selection) {
         if (!selection.width || !selection.height)
           return;
+        console.log(selection);
+        selection = getRealSelection(img, selection);
+        console.log(selection);
         var canvas = document.createElement('canvas');
         var ctx = canvas.getContext("2d");
-        canvas.height = 600;
-        canvas.width = 600;
+        canvas.height = 6000;
+        canvas.width = 6000;
 
         ctx.drawImage(img, 0, 0);
         var imgData = ctx.getImageData(selection.x1, selection.y1, selection.width, selection.height);
