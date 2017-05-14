@@ -88,8 +88,11 @@ ENV/
 # Rope project settings
 .ropeproject
 
+# server side files
 .bash_logout
 .bashrc
 .profile
 .cloud-locale-test.skip
 
+# uploaded files
+acne/static/uploads/*

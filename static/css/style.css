@@ -28,12 +28,3 @@ img.acne {
     width: auto;
     height: auto;
 }
-
-input[type="file"] {
-    display: none;
-}
-
-canvas#myCanvas {
-    height: 600px;
-    width: 600px;
-}
