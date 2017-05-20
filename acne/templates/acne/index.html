@@ -62,7 +62,7 @@
           }
           $.post("/predict", requestData, function(feedback){
             console.log(feedback);
-            $("#class").text(classes[feedback[result]]);
+            $("#class").text(classes[feedback["result"]]);
           });
         });
       }
