@@ -12,7 +12,7 @@
   <script type="text/javascript" src="{% static 'javascript/myjs.js' %}"></script>
   <script type="text/javascript">
     $(document).ready(function($) {
-
+      var classes = ["无", "囊肿", "白头", "黑头", "脓包", "结节", "丘疹"]
       function getRealSelection(img, selection) {
 
         if (img.naturalWidth <= 600 && img.naturalHeight <= 600) {
@@ -62,6 +62,7 @@
           }
           $.post("/predict", requestData, function(feedback){
             console.log(feedback);
+            $("#class").text(classes[feedback[result]]);
           });
         });
       }
@@ -130,7 +131,7 @@
         </div>
         <div class="card-content">
           <p class="instruction">使用说明：拖动鼠标选中检测区域</p>
-          <p class="result">类型：</p>
+          <p class="result">类型：<span id="class" style="color: red"></span></p>
         </div>
       </div>
     </div>
